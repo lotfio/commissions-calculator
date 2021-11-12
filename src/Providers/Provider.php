@@ -16,7 +16,7 @@ namespace CommissionsCalculator\Providers;
 
 use CommissionsCalculator\Exceptions\ProviderException;
 
-class Provider
+abstract class Provider
 {
     /**
      * 3rd party api url

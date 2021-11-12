@@ -16,17 +16,18 @@ use CommissionsCalculator\Input;
 use CommissionsCalculator\Output;
 use CommissionsCalculator\Utility\Transactions;
 use CommissionsCalculator\Utility\Currency;
-use CommissionsCalculator\Utility\Provider;
+use CommissionsCalculator\Utility\ProviderFactory;
 
 require 'vendor/autoload.php';
 
-$input          = new Input();
+$input          = new Input($argv);
 $output         = new Output();
-$provider       = new Provider();
+$provider       = new ProviderFactory();
 $transaction    = new Transactions();
 $currency       = new Currency();
+
 $calculator     = new Calculator($input, $output, $provider, $transaction, $currency);
 
-$output->handleException(function () use ($calculator) {
-    $calculator->calculate();
-});
+$output->handleException(
+    fn() => $calculator->calculate()
+);

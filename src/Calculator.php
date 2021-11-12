@@ -18,7 +18,7 @@ use CommissionsCalculator\Contracts\InputInterface;
 use CommissionsCalculator\Contracts\OutputInterface;
 use CommissionsCalculator\Utility\Transactions;
 use CommissionsCalculator\Utility\Currency;
-use CommissionsCalculator\Utility\Provider;
+use CommissionsCalculator\Utility\ProviderFactory;
 
 final class Calculator
 {
@@ -51,31 +51,31 @@ final class Calculator
     private Currency $currency;
 
     /**
-     * provider object
+     * ProviderFactory object
      *
-     * @var Provider
+     * @var ProviderFactory
      */
-    private Provider $provider;
+    private ProviderFactory $providerFactory;
 
     /**
      * initialize dependencies
      *
      * @param InputInterface $input
      * @param OutputInterface $output
-     * @param Provider $provider
+     * @param ProviderFactory $provider
      * @param Transactions $transactions
      * @param Currency $currency
      */
     public function __construct(
         InputInterface $input,
         OutputInterface $output,
-        Provider $provider,
+        ProviderFactory $providerFactory,
         Transactions $transactions,
         Currency $currency
     ) {
         $this->input  = $input;
         $this->output = $output;
-        $this->provider = $provider;
+        $this->providerFactory = $providerFactory;
         $this->transactions = $transactions;
         $this->currency = $currency;
     }
@@ -95,12 +95,12 @@ final class Calculator
         foreach ($transactions as $transaction) {
 
             // get bin
-            $bin    = $this->provider->get('binLookup')->provides($transaction->bin);
+            $bin    = $this->providerFactory->get('binLookup')->provides($transaction->bin);
             $alpha2 = $bin['country']['alpha2'];
             $isEu   = $this->currency->isEu($alpha2);
 
             // get exchange rate
-            $rate = $this->provider->get('exchangeRate')->provides();
+            $rate = $this->providerFactory->get('exchangeRate')->provides();
             $rate = $rate[$transaction->currency];
 
             $amountFixed = 0;
