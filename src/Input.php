@@ -15,9 +15,25 @@ declare(strict_types=1);
 namespace CommissionsCalculator;
 
 use CommissionsCalculator\Contracts\InputInterface;
+use CommissionsCalculator\Exceptions\InputException;
 
 final class Input implements InputInterface
 {
+    /**
+     * @var array $argv
+     */
+    private array $argv;
+
+    /**
+     * set up
+     *
+     * @param array $argv
+     */
+    public function __construct(array $argv)
+    {
+        $this->argv = $argv;
+    }
+
     /**
      * input command method
      *
@@ -27,7 +43,10 @@ final class Input implements InputInterface
      */
     public function command(): string
     {
-        global $argv;
-        return $argv[1] ?? '';
+        if(!isset($this->argv[1])) {
+            throw new InputException("missing input command");
+        }
+
+        return $this->argv[1] ?? '';
     }
 }
