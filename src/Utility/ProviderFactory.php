@@ -14,10 +14,10 @@ declare(strict_types=1);
 
 namespace CommissionsCalculator\Utility;
 
-use CommissionsCalculator\Exceptions\ProviderException;
+use CommissionsCalculator\Exceptions\ProviderFactoryException;
 use CommissionsCalculator\Contracts\ProviderInterface;
 
-final class Provider
+final class ProviderFactory
 {
     /**
      * registered providers array
@@ -39,9 +39,13 @@ final class Provider
     public function get(string $provider): ProviderInterface
     {
         if (!array_key_exists($provider, $this->providers)) {
-            throw new ProviderException("Provider $provider not registered");
+            throw new ProviderFactoryException("Provider $provider not registered");
         }
 
-        return new $this->providers[$provider]();
+        if(!class_exists($this->providers[$provider])) {
+            throw new ProviderFactoryException("Provider $provider class not found");
+        }
+
+        return new $this->providers[$provider];
     }
 }
