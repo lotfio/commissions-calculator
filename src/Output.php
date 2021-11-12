@@ -51,9 +51,9 @@ final class Output implements OutputInterface
      * handle exception method
      *
      * @param callable $callback
-     * @return void
+     * @return mixed
      */
-    public function handleException(callable $callback): void
+    public function handleException(callable $callback)
     {
         try {
             $callback();
@@ -62,7 +62,7 @@ final class Output implements OutputInterface
             $trace .= "    Message : " . $exception->getMessage() . "\n";
             $trace .= "    File    : " . $exception->getFile() . "\n";
             $trace .= "    Line    : " . $exception->getLine() . "\n";
-            $this->writeLn($trace);
+            return $this->writeLn($trace);
         }
     }
 }
