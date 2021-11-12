@@ -19,19 +19,29 @@ use CommissionsCalculator\Exceptions\TransactionsException;
 final class Transactions
 {
     /**
-     * parse transactions file
+     * load transactions file
      *
-     * @param string $transactionsFile
+     * @param  string $transactionsFile
+     * @return string
      */
-    public function parseFromFile(string $transactionsFile): array
+    private function loadFile(string $transactionsFile): string
     {
-        $transactionsFile = realpath($transactionsFile);
-
-        if (!$transactionsFile || !is_file(realpath($transactionsFile))) {
+        if (!realpath($transactionsFile)) {
             throw new TransactionsException("Transactions input file ($transactionsFile) does not seem to be a valid file");
         }
 
-        $content = trim(file_get_contents($transactionsFile));
+        return trim(file_get_contents(realpath($transactionsFile)));
+    }
+
+    /**
+     * parse transactions file
+     *
+     * @param  string $transactionsFile
+     * @return array
+     */
+    public function parseFile(string $transactionsFile): array
+    {
+        $content = $this->loadFile($transactionsFile);
 
         return array_map(function ($line) use ($transactionsFile) {
             $data = json_decode($line);
