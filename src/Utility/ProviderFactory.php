@@ -29,7 +29,6 @@ final class ProviderFactory
         'exchangeRate' => \CommissionsCalculator\Providers\ExchangeRateProvider::class
     ];
 
-
     /**
      * get provider
      *
@@ -42,10 +41,15 @@ final class ProviderFactory
             throw new ProviderFactoryException("Provider $provider not registered");
         }
 
+        // if object means already instantiated no need to re-instantiate
+        if(is_object($this->providers[$provider])) {
+            return $this->providers[$provider];
+        }
+
         if(!class_exists($this->providers[$provider])) {
             throw new ProviderFactoryException("Provider $provider class not found");
         }
 
-        return new $this->providers[$provider];
+        return $this->providers[$provider] = new $this->providers[$provider];
     }
 }
