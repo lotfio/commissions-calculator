@@ -21,8 +21,8 @@ interface ProviderInterface
      *
      * this method returns an array data from a 3thd party provider
      *
-     * @param mixed $parameters
+     * @param  mixed $parameters
      * @return array
      */
-    public function provides(mixed ...$parameters): array;
+    public function provides(...$parameters): array;
 }

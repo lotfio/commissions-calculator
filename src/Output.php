@@ -32,7 +32,7 @@ final class Output implements OutputInterface
      * @param string $line
      * @return mixed
      */
-    public function writeLn(string $line): mixed
+    public function writeLn(string $line)
     {
         return $this->testMode ? $line : fwrite(STDOUT, $line, strlen($line));
     }
@@ -57,11 +57,11 @@ final class Output implements OutputInterface
     {
         try {
             $callback();
-        } catch (\Exception $e) {
-            $trace  = "\n -> ". get_class($e) . " : \n\n";
-            $trace .= "    Message : " . $e->getMessage() . "\n";
-            $trace .= "    File    : " . $e->getFile() . "\n";
-            $trace .= "    Line    : " . $e->getLine() . "\n";
+        } catch (\Exception $exception) {
+            $trace  = "\n -> ". basename(str_replace('\\', DIRECTORY_SEPARATOR, get_class($exception))). " : \n\n";
+            $trace .= "    Message : " . $exception->getMessage() . "\n";
+            $trace .= "    File    : " . $exception->getFile() . "\n";
+            $trace .= "    Line    : " . $exception->getLine() . "\n";
             $this->writeLn($trace);
         }
     }

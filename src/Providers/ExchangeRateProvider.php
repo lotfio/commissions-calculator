@@ -39,7 +39,7 @@ final class ExchangeRateProvider extends Provider implements ProviderInterface
      *
      * @return array
      */
-    public function provides(mixed ...$parameters): array
+    public function provides(...$parameters): array
     {
         // build url string
         //$this->url = $this->apiUrl . "/latest?access_key=" . $this->apiKey;

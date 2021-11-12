@@ -40,7 +40,7 @@ final class BinLookupProvider extends Provider implements ProviderInterface
      *
      * @return array
      */
-    public function provides(mixed ...$parameters): array
+    public function provides(...$parameters): array
     {
         if (!isset($parameters[0])) {
             throw new ProviderException("BinLookup Provider requires a bin number to look up for");

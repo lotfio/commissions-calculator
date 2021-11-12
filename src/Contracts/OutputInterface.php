@@ -21,5 +21,5 @@ interface OutputInterface
      *
      * @return mixed
      */
-    public function writeLn(string $line): mixed;
+    public function writeLn(string $line);
 }
