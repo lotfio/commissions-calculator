@@ -45,7 +45,7 @@ class ProviderTest extends TestCase
         $response = $this->provider->pullFromUrlProtectedMethod(
             dirname(__DIR__, 2) . '/stubs/transactions.txt'
         );
-        
+
         $this->assertIsString($response);
     }
 }
