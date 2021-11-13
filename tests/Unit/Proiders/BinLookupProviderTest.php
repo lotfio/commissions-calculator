@@ -53,7 +53,7 @@ class BinLookupProviderTest extends TestCase
     {
         $refProperty = $this->binReflectionObject->getProperty( 'apiUrl' );
         $refProperty->setAccessible(true);
-        $refProperty->setValue( $this->binLookupProvider , dirname(__DIR__, 2) . "/stubs");
+        $refProperty->setValue( $this->binLookupProvider , dirname(__DIR__, 2) . "/stubs/");
         $data = $this->binLookupProvider->provides(45417360);
 
         $this->assertIsArray($data);

@@ -24,14 +24,7 @@ final class BinLookupProvider extends Provider implements ProviderInterface
      *
      * @var string
      */
-    private string $apiUrl = 'https://lookup.binlist.net';
-
-    /**
-     * api key
-     *
-     * @var string
-     */
-    private string $apiKey = '';
+    private string $apiUrl = 'https://lookup.binlist.net/';
 
     /**
      * provides method
@@ -49,7 +42,7 @@ final class BinLookupProvider extends Provider implements ProviderInterface
 
         // pull data from api
         $response = json_decode($this->pullFromUrl(
-            $this->apiUrl . "/" . $parameters[0]
+            $this->apiUrl . $parameters[0]
         ), true);
 
         // return response
