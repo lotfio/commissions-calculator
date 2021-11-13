@@ -37,6 +37,13 @@ final class Calculator
     private OutputInterface $output;
 
     /**
+     * ProviderFactory object
+     *
+     * @var ProviderFactory
+     */
+    private ProviderFactory $providerFactory;
+
+    /**
      * transactions object
      *
      * @var Transactions
@@ -49,13 +56,6 @@ final class Calculator
      * @var Currency
      */
     private Currency $currency;
-
-    /**
-     * ProviderFactory object
-     *
-     * @var ProviderFactory
-     */
-    private ProviderFactory $providerFactory;
 
     /**
      * initialize dependencies
