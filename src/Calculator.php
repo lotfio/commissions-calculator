@@ -113,7 +113,7 @@ final class Calculator
             }
 
             $commission = $amountFixed * ($isEu ? 0.01 : 0.02);
-            $this->output->writeLn($commission . "\n");
+            $this->output->writeLn(sprintf("%0.2f", (ceil( $commission * 100) / 100) ) . "\n");
         }
     }
 }
