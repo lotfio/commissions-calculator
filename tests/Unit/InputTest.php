@@ -20,14 +20,14 @@ use CommissionsCalculator\Input;
 
 class InputTest extends TestCase
 {
-    public function testInputCommandMissing()
+    public function testInputCommandMethodMissingCommand()
     {
         $input = new Input(["file"]);
         $this->expectException(InputException::class);
         $input->command();
     }
 
-    public function testInputCommandProvided()
+    public function testInputCommandMethodProvidedCommand()
     {
         $input = new Input(["file", "userCommand"]);
         $this->assertSame("userCommand", 

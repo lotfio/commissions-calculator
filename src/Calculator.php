@@ -88,7 +88,7 @@ final class Calculator
     public function calculate(): void
     {
         // get transactions
-        $transactions = $this->transactions->parseFromFile(
+        $transactions = $this->transactions->parseFile(
             $this->input->command()
         );
 
