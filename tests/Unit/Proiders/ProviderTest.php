@@ -24,7 +24,8 @@ class ProviderTest extends TestCase
 
     public function setUp(): void
     {
-        // another way of testing private/protected members with anonymous class
+        // a simpler way of testing abstract classes instead of using mocks (getMockForAbstractClass)
+        // and another way of testing private/protected members
         $this->provider = new class extends Provider {
             public function pullFromUrlProtectedMethod(string $url): string
             {
