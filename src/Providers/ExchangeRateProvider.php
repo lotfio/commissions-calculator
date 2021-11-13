@@ -23,7 +23,7 @@ final class ExchangeRateProvider extends Provider implements ProviderInterface
      *
      * @var string
      */
-    private string $apiUrl = 'http://api.exchangeratesapi.io/v1';
+    private string $apiUrl = 'http://api.exchangeratesapi.io/v1/latest?access_key=';
 
     /**
      * api key
@@ -44,7 +44,7 @@ final class ExchangeRateProvider extends Provider implements ProviderInterface
     {
         // pull data from api
         $response  = json_decode($this->pullFromUrl(
-            $this->apiUrl . "/latest?access_key=" . $this->apiKey
+            $this->apiUrl . $this->apiKey
         ), true);
 
         // return response

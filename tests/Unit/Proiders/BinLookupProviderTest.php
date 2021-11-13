@@ -20,24 +20,43 @@ use CommissionsCalculator\Exceptions\ProviderException;
 
 class BinLookupProviderTest extends TestCase
 {
+    protected $binLookupProvider;
+    protected $binReflectionObject;
+
+    public function setUp(): void
+    {
+        $this->binLookupProvider  = new BinLookupProvider();
+        $this->binReflectionObject = new \ReflectionObject( $this->binLookupProvider );
+    }
+
     public function testProvidesMethodMissingBin()
     {
-        $bin = new BinLookupProvider;
+        $refProperty = $this->binReflectionObject->getProperty( 'apiUrl' );
+        $refProperty->setAccessible(true);
+        $refProperty->setValue( $this->binLookupProvider , dirname(__DIR__, 2) . "/stubs");
+
         $this->expectException(ProviderException::class);
-        $bin->provides();
+        $this->binLookupProvider->provides();
     }
 
-    public function testProvidesMethodNotFoundBin()
+    public function testProvidesMethodInvalidUrl()
     {
-        $bin = new BinLookupProvider;
+        $refProperty = $this->binReflectionObject->getProperty( 'apiUrl' );
+        $refProperty->setAccessible(true);
+        $refProperty->setValue( $this->binLookupProvider , dirname(__DIR__, 2) . "/stubs/bin");
+
         $this->expectException(ProviderException::class);
-        $bin->provides(120);
+        $this->binLookupProvider->provides(45417360);
     }
 
-    public function testProvidesMethodValidBin()
+    public function testProvidesMethodValidBinAndUrl()
     {
-        $bin      = new BinLookupProvider;
-        $response = $bin->provides(45417360);
-        $this->assertIsArray($response);
+        $refProperty = $this->binReflectionObject->getProperty( 'apiUrl' );
+        $refProperty->setAccessible(true);
+        $refProperty->setValue( $this->binLookupProvider , dirname(__DIR__, 2) . "/stubs");
+        $data = $this->binLookupProvider->provides(45417360);
+
+        $this->assertIsArray($data);
+        $this->assertArrayHasKey('bank', $data);
     }
 }
