@@ -26,7 +26,7 @@ final class Transactions
      */
     private function loadFile(string $transactionsFile): string
     {
-        if (!realpath($transactionsFile)) {
+        if (!realpath($transactionsFile) || !is_file($transactionsFile)) {
             throw new TransactionsException("Transactions input file ($transactionsFile) does not seem to be a valid file");
         }
 
