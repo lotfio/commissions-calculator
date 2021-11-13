@@ -41,13 +41,10 @@ final class ExchangeRateProvider extends Provider implements ProviderInterface
      */
     public function provides(...$parameters): array
     {
-        // build url string
-        //$this->url = $this->apiUrl . "/latest?access_key=" . $this->apiKey;
-
-        $this->url = dirname(__DIR__, 2) . "/dummy/exchange_rate.json";
-
         // fetch from url
-        $response  = json_decode($this->pullFromUrl(), true);
+        $response  = json_decode($this->pullFromUrl(
+            $this->apiUrl . "/latest?access_key=" . $this->apiKey
+        ), true);
 
         // return needed data
         return $response['rates'];

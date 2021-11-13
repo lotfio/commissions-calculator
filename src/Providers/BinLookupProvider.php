@@ -46,11 +46,10 @@ final class BinLookupProvider extends Provider implements ProviderInterface
             throw new ProviderException("BinLookup Provider requires a bin number to look up for");
         }
 
-        // build url string
-        $this->url = $this->apiUrl . "/" . $parameters[0];
-
         // pull data from api
-        $response = json_decode($this->pullFromUrl(), true);
+        $response = json_decode($this->pullFromUrl(
+            $this->apiUrl . "/" . $parameters[0]
+        ), true);
 
         // return response
         return $response;

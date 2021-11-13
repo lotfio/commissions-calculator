@@ -19,21 +19,14 @@ use CommissionsCalculator\Exceptions\ProviderException;
 abstract class Provider
 {
     /**
-     * 3rd party api url
-     *
-     * @var string
-     */
-    protected string $url;
-
-    /**
      * pull from url method
      *
      * @return string
      */
-    protected function pullFromUrl(): string
+    protected function pullFromUrl(string $url): string
     {
         $data = @file_get_contents(
-            $this->url,
+            $url,
             false,
             stream_context_create(["http"=>["timeout"=> 10]])
         );
