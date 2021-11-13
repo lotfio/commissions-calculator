@@ -45,14 +45,14 @@ final class ProviderFactory
         }
 
         // if object means already instantiated no need to re-instantiate
-        if(is_object($this->providers[$provider])) {
+        if (is_object($this->providers[$provider])) {
             return $this->providers[$provider];
         }
 
-        if(!class_exists($this->providers[$provider])) {
+        if (!class_exists($this->providers[$provider])) {
             throw new ProviderFactoryException("Provider $provider class not found");
         }
 
-        return $this->providers[$provider] = new $this->providers[$provider];
+        return $this->providers[$provider] = new $this->providers[$provider]();
     }
 }

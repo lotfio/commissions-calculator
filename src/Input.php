@@ -43,7 +43,7 @@ final class Input implements InputInterface
      */
     public function command(): string
     {
-        if(!isset($this->argv[1])) {
+        if (!isset($this->argv[1])) {
             throw new InputException("missing input command");
         }
 
