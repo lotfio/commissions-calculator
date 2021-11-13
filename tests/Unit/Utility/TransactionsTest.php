@@ -24,8 +24,8 @@ class TransactionsTest extends TestCase
 
     public function setUp(): void
     {
-        // This just an example of testing private methods, so many devs do not recommend testing private 
-        // methods as they are going to be tested when used by public methods However others recommend
+        // example of testing private/protected members with reflection api
+        // opinions differ about testing private/protected members 
         $class = new \ReflectionClass(Transactions::class);
         $this->loadFileMethod = $class->getMethod('loadFile');
         $this->loadFileMethod->setAccessible(true);
