@@ -21,7 +21,11 @@ abstract class Provider
     /**
      * pull from url method
      *
+     * @param  string $url
      * @return string
+     *
+     * @psalm-suppress PossiblyNullArrayAccess
+     * @psalm-suppress PossiblyNullOperand
      */
     protected function pullFromUrl(string $url): string
     {

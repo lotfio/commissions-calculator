@@ -34,6 +34,9 @@ final class ProviderFactory
      *
      * @param  string $provider
      * @return ProviderInterface
+     *
+     * @psalm-suppress MoreSpecificReturnType
+     * @psalm-suppress LessSpecificReturnStatement
      */
     public function get(string $provider): ProviderInterface
     {

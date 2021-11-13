@@ -38,6 +38,7 @@ final class BinLookupProvider extends Provider implements ProviderInterface
      *
      * this method returns an array data from a 3thd party provider
      *
+     * @param  mixed ...$parameters
      * @return array
      */
     public function provides(...$parameters): array
