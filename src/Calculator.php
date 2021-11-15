@@ -83,14 +83,16 @@ final class Calculator
     /**
      * calculate commissions method
      *
-     * @return void
+     * @return mixed
      */
-    public function calculate(): void
+    public function calculate()
     {
         // get transactions
         $transactions = $this->transactions->parseFile(
             $this->input->command()
         );
+
+        $out = '';
 
         foreach ($transactions as $transaction) {
 
@@ -113,7 +115,9 @@ final class Calculator
             }
 
             $commission = $amountFixed * ($isEu ? 0.01 : 0.02);
-            $this->output->writeLn(sprintf("%0.2f", (ceil( $commission * 100) / 100) ) . "\n");
+            $out .= $this->output->writeLn(sprintf("%0.2f", (ceil( $commission * 100) / 100) ) . "\n");
         }
+
+        return $out;
     }
 }
