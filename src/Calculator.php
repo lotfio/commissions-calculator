@@ -92,7 +92,7 @@ final class Calculator
             $this->input->command()
         );
 
-        $out = '';
+        $out = ''; // if testing
 
         foreach ($transactions as $transaction) {
 
