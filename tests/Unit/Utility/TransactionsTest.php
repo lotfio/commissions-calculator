@@ -15,7 +15,7 @@ declare(strict_types=1);
 namespace Tests\Unit\Utility;
 
 use PHPUnit\Framework\TestCase;
-use CommissionsCalculator\Utility\Transactions; 
+use CommissionsCalculator\Utility\Transactions;
 use CommissionsCalculator\Exceptions\TransactionsException;
 
 class TransactionsTest extends TestCase
@@ -25,7 +25,7 @@ class TransactionsTest extends TestCase
     public function setUp(): void
     {
         // example of testing private/protected members with reflection api
-        // opinions differ about testing private/protected members 
+        // opinions differ about testing private/protected members
         $class = new \ReflectionClass(Transactions::class);
         $this->loadFileMethod = $class->getMethod('loadFile');
         $this->loadFileMethod->setAccessible(true);
@@ -65,7 +65,7 @@ class TransactionsTest extends TestCase
         $transactions = new Transactions;
         $this->expectException(TransactionsException::class);
         $transactions->parseFile(
-            dirname(__DIR__, 2) . '/stubs/transactions2.txt'
+            dirname(__DIR__, 2) . '/stubs/exchange_rates.txt'
         );
     }
 }
