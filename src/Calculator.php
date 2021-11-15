@@ -92,7 +92,7 @@ final class Calculator
             $this->input->command()
         );
 
-        $out = ''; // if testing
+        $out = '';
 
         foreach ($transactions as $transaction) {
 
@@ -115,9 +115,9 @@ final class Calculator
             }
 
             $commission = $amountFixed * ($isEu ? 0.01 : 0.02);
-            $out .= $this->output->writeLn(sprintf("%0.2f", (ceil($commission * 100) / 100)) . "\n");
+            $out .= sprintf("%0.2f", (ceil($commission * 100) / 100)) . "\n";
         }
 
-        return $out;
+        return $this->output->writeLn($out);
     }
 }
