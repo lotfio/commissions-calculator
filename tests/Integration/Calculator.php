@@ -103,7 +103,7 @@ class CalculatorTest extends TestCase
         $output->enableTestMode();
 
         $calculator = new Calculator(
-            new Input(['','']), $output,  $this->getProviderFactoryMock(), $this->getTransactionsMock(), new Currency
+            new Input(['','']), $output, $this->getProviderFactoryMock(), $this->getTransactionsMock(), new Currency
         );
 
         $result = explode("\n", $calculator->calculate());
