@@ -1,5 +1,5 @@
-# Commissions calculator task
- - Thanks to (without mentioning the name) for this opportunity it was fun.
+# Commissions calculator
+- stupid task 
 
 ## Note:
  - Task took more than 4 hours and done mainly on my free time (evenings).
